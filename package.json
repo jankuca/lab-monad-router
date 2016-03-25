@@ -1,0 +1,10 @@
+{
+  "name": "monad-render",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "rollup src/main.js -o dist/main.js"
+  },
+  "devDependencies": {
+    "rollup": "0.25.x"
+  }
+}
