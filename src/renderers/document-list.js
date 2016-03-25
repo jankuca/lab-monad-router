@@ -5,6 +5,10 @@ export default function render(props) {
   return Promise.resolve({
     type: 'div',
     text: 'Document List',
-    nextUrl: 'app://documents/?id=123'
+    actions: [
+      { label: 'Open Document 1', url: 'app://documents/?id=1' },
+      { label: 'Open Document 2', url: 'app://documents/?id=2' },
+      { label: 'Open Document 3', url: 'app://documents/?id=3' }
+    ]
   })
 }

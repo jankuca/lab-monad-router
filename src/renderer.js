@@ -32,10 +32,31 @@ function _printRendering(dom, rendering) {
       rendering.text +
     '</' + rendering.type + '>'
   )
+
+  const doc = dom.ownerDocument
+  return _printRenderingActions(doc, dom, rendering.actions)
+}
+
+function _printRenderingActions(doc, dom, actions) {
+  console.log('printRenderingActions(DomDocument, Dom, RenderingAction) -> Promise<RenderingResult?>')
+
+  return Promise.race(
+    actions.map(partial(_printRenderingAction, doc, dom))
+  )
+}
+
+function _printRenderingAction(doc, dom, action) {
+  console.log('printRenderingAction(DomDocument, Dom, RenderingAction) -> Promise<RenderingResult?>')
+
+  const button = doc.createElement('button')
+  button.type = 'button'
+  button.innerHTML = action.label
+  dom.appendChild(button)
+
   return new Promise((resolve) => {
-    dom.onclick = () => {
+    button.onclick = () => {
       resolve({
-        nextUrl: rendering.nextUrl
+        nextUrl: action.url
       })
     }
   })
